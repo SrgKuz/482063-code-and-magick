@@ -1,4 +1,4 @@
-'use strict';
+п»ї'use strict';
 
 var fillRect = {
   WIDTH: 420,
@@ -17,7 +17,7 @@ var bar = {
   TOP: 240,
   LINE_HEIGHT: 20,
   COLOR_TEXT: '#000',
-  YOUR: 'вы'
+  YOUR: 'РІС‹'
 };
 
 var renderRect = function (context, coord, fill) {
@@ -44,14 +44,14 @@ window.renderStatistics = function (ctx, names, times) {
   renderText(ctx, {
     color: '#000',
     font: '16px PT Mono',
-    text: '“ра вы победили!',
+    text: 'РЈСЂР° РІС‹ РїРѕР±РµРґРёР»Рё!',
     LEFT: fillRect.LEFT + 20,
     TOP: fillRect.TOP + 30
   });
   renderText(ctx, {
     color: '#000',
     font: '16px PT Mono',
-    text: '‘писок результатов:',
+    text: 'РЎРїРёСЃРѕРє СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ:',
     LEFT: fillRect.LEFT + 20,
     TOP: fillRect.TOP + 30 + bar.LINE_HEIGHT
   });
