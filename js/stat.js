@@ -1,4 +1,5 @@
 'use strict';
+
 var fillRect = {
   WIDTH: 420,
   HEIGHT: 270,
