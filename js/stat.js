@@ -1,31 +1,33 @@
-'use strict';
+п»ї'use strict';
+
 var fillRect = {
-  width: 420,
-  height: 270,
-  left: 100,
-  top: 10,
-  shadowOffest: 10
+  WIDTH: 420,
+  HEIGHT: 270,
+  LEFT: 100,
+  TOP: 10,
+  SHADOW_OFFEST: 10
 };
 
 var bar = {
-  width: 40,
-  Height: 150,
-  indent: 90,
-  maxHeight: 120,
-  left: 150,
-  top: 240,
-  lineHeight: 20,
-  colorText: '#000',
+  WIDTH: 40,
+  HEIGHT: 150,
+  INDENT: 90,
+  MAX_HEIGHT: 120,
+  LEFT: 150,
+  TOP: 240,
+  LINE_HEIGHT: 20,
+  COLOR_TEXT: '#000',
+  YOUR: 'РІС‹'
 };
 
 var renderRect = function (context, coord, fill) {
   context.fillStyle = fill;
-  context.fillRect(coord.left, coord.top, coord.width, coord.height);
+  context.fillRect(coord.LEFT, coord.TOP, coord.WIDTH, coord.HEIGHT);
 };
 var renderText = function (context, textStyle) {
   context.fillStyle = textStyle.color;
   context.font = textStyle.font;
-  context.fillText(textStyle.text, textStyle.left, textStyle.top);
+  context.fillText(textStyle.text, textStyle.LEFT, textStyle.TOP);
 };
 var getOpacity = function (min, max) {
   return min - 0.5 + Math.random() * (max - min + 1);
@@ -33,47 +35,48 @@ var getOpacity = function (min, max) {
 window.renderStatistics = function (ctx, names, times) {
   var color;
   renderRect(ctx, {
-    left: fillRect.left + fillRect.shadowOffest,
-    top: fillRect.top + fillRect.shadowOffest,
-    width: fillRect.width,
-    height: fillRect.height
+    LEFT: fillRect.LEFT + fillRect.SHADOW_OFFEST,
+    TOP: fillRect.TOP + fillRect.SHADOW_OFFEST,
+    WIDTH: fillRect.WIDTH,
+    HEIGHT: fillRect.HEIGHT
   }, '#000');
   renderRect(ctx, fillRect, 'rgba(255,255,255, 1)');
   renderText(ctx, {
     color: '#000',
     font: '16px PT Mono',
-    text: 'Ура вы победили!',
-    left: fillRect.left + 20,
-    top: fillRect.top + 30
+    text: 'РЈСЂР° РІС‹ РїРѕР±РµРґРёР»Рё!',
+    LEFT: fillRect.LEFT + 20,
+    TOP: fillRect.TOP + 30
   });
   renderText(ctx, {
     color: '#000',
     font: '16px PT Mono',
-    text: 'Список результатов:',
-    left: fillRect.left + 20,
-    top: fillRect.top + 30 + bar.lineHeight
+    text: 'РЎРїРёСЃРѕРє СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ:',
+    LEFT: fillRect.LEFT + 20,
+    TOP: fillRect.TOP + 30 + bar.LINE_HEIGHT
   });
   for (var i = 0; i < names.length; i++) {
-    color = names[i].toLowerCase() === 'вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255,' + getOpacity(0.65, 1) + ')';
+    color = names[i].toLowerCase() === bar.YOUR ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255,' + getOpacity(0.65, 1) + ')';
     renderRect(ctx, {
-      left: bar.left + bar.indent * i,
-      top: bar.top,
-      width: bar.width,
-      height: -times[i] / Math.max.apply(null, times) * bar.maxHeight
+      LEFT: bar.LEFT + bar.INDENT * i,
+      TOP: bar.TOP,
+      WIDTH: bar.WIDTH,
+      HEIGHT: (-times[i] / Math.max.apply(null, times)) * bar.MAX_HEIGHT
     }, color);
     renderText(ctx, {
       color: '#000',
       font: '16px PT Mono',
       text: names[i],
-      left: bar.left + bar.indent * i,
-      top: bar.top + bar.lineHeight
+      LEFT: bar.LEFT + bar.INDENT * i,
+      TOP: bar.TOP + bar.LINE_HEIGHT
     });
     renderText(ctx, {
       color: '#000',
       font: '16px PT Mono',
       text: Math.floor(times[i]),
-      left: bar.left + bar.indent * i,
-      top: bar.top - times[i] / Math.max.apply(null, times) * bar.maxHeight - bar.lineHeight
+      LEFT: bar.LEFT + bar.INDENT * i,
+      TOP: bar.TOP - times[i] / Math.max.apply(null, times) * bar.MAX_HEIGHT - bar.LINE_HEIGHT
     });
   }
 };
+
