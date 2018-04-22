@@ -43,11 +43,9 @@ var colorEyes = [
 
 document.querySelector('.setup').classList.remove('hidden');
 
-
 // функция случайного числа
-function getRandomInteger(min, max) {
-  var randomNumb = Math.floor(Math.random() * (max - min) + min);
-  return randomNumb;
+var getRandomInteger = function (min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
 var similarListElement = document.querySelector('.setup-similar-list');
@@ -55,26 +53,21 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-var hero = [];
+var heros = [];
 
-function generateWizard() {
+var generateWizard = function () {
   for (var i = 0; i < COUNT_WIZARDS; i++) {
-    var fullNameWizard = wizardsName[getRandomInteger(0, 7)] + wizardsLastName[getRandomInteger(0, 7)];
-    hero[i] = {
+    var fullNameWizard = wizardsName[getRandomInteger(0, 7)] + ' ' + wizardsLastName[getRandomInteger(0, 7)];
+    heros.push({
       'wizardName': fullNameWizard,
       'coat': coatsColor[getRandomInteger(0, coatsColor.length)],
       'eyesColor': colorEyes[getRandomInteger(0, colorEyes.length)]
-    };
+    });
   }
-  return hero;
-}
-generateWizard();
-var fragment = document.createDocumentFragment();
-for (var i = 0; i < COUNT_WIZARDS; i++) {
-  fragment.appendChild(renderWizard(hero[i]));
+  return heros;
 }
 
-function renderWizard(wizard) {
+var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.wizardName;
@@ -83,6 +76,12 @@ function renderWizard(wizard) {
 
   return wizardElement;
 }
+
+generateWizard();
+var fragment = document.createDocumentFragment();
+heros.forEach(function(heros) {
+  fragment.appendChild(renderWizard(heros));
+});
 
 similarListElement.appendChild(fragment);
 document.querySelector('.setup-similar').classList.remove('hidden');
