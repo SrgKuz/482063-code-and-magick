@@ -46,7 +46,7 @@ document.querySelector('.setup').classList.remove('hidden');
 // функция случайного числа
 var getRandomInteger = function (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
-}
+};
 
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
@@ -65,7 +65,7 @@ var generateWizard = function () {
     });
   }
   return heros;
-}
+};
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -75,12 +75,12 @@ var renderWizard = function (wizard) {
   wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
 
   return wizardElement;
-}
+};
 
 generateWizard();
 var fragment = document.createDocumentFragment();
-heros.forEach(function(heros) {
-  fragment.appendChild(renderWizard(heros));
+heros.forEach(function (hero) {
+  fragment.appendChild(renderWizard(hero));
 });
 
 similarListElement.appendChild(fragment);
