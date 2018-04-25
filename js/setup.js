@@ -56,7 +56,6 @@ var getRandomInteger = function (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-var evt = (evt) ? evt : event;
 var setupOpen = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
 var setupClose = setup.querySelector('.setup-close');
