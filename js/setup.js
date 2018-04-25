@@ -56,11 +56,12 @@ var getRandomInteger = function (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
+var evt = (evt) ? evt : event;
 var setupOpen = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
 var setupClose = setup.querySelector('.setup-close');
 var userNameInput = setup.querySelector('.setup-user-name');
-
+var focusSetup = document.querySelector('.setup-user-name');
 var wizardColorEyes = setup.querySelector('.wizard-eyes');
 
 wizardColorEyes.addEventListener('click', function () {
@@ -79,7 +80,7 @@ fireballColor.addEventListener('click', function () {
 
 
 var onPopupEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE && !setup.querySelector('.setup-user-name').focus) {
+  if (evt.keyCode === ESC_KEYCODE && document.activeElement !== focusSetup) {
     closePopup();
   }
 };
